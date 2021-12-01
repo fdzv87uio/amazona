@@ -26,7 +26,7 @@ export default function ProductPage() {
     return <div>Product Not Found!</div>;
   } else {
     return (
-      <Layout title={productData.name}>
+      <Layout title={productData.name} description={productData.description}>
         <div className={classes.section}>
           <NextLink href="/" passHref>
             <Link>Back to home</Link>
@@ -45,7 +45,9 @@ export default function ProductPage() {
           <Grid item md={3} xs={12}>
             <List>
               <ListItem>
-                <Typography component="h1">{productData.name}</Typography>
+                <Typography component="h1" variant="h1">
+                  {productData.name}
+                </Typography>
               </ListItem>
               <ListItem>
                 <Typography>Brand: {productData.brand}</Typography>

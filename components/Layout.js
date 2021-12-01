@@ -8,39 +8,48 @@ import {
   Container,
   makeStyles,
   Link,
+  ThemeProvider,
+  CssBaseline,
 } from '@material-ui/core';
+import { theme } from '../utils/theme';
 
-function Layout({ children }) {
+function Layout({ title, description, children }) {
   const classes = useStyles();
   return (
     <div>
       <Head>
-        <title>Amazona</title>
+        <title>{title ? title : 'Amazona'}</title>
+        {description ? (
+          <meta name="description" content={description}></meta>
+        ) : null}
       </Head>
-      <AppBar className={classes.navbar} position="static">
-        <Toolbar>
-          <NextLink href="/" passHref>
-            <Link>
-              <Typography className={classes.brand}>Amazona</Typography>
-            </Link>
-          </NextLink>
-          <div className={classes.grow}></div>
-          <NextLink href="/cart" passHref>
-            <Link>
-              <Typography>Cart</Typography>
-            </Link>
-          </NextLink>
-          <NextLink href="/login" passHref>
-            <Link>
-              <Typography>Login</Typography>
-            </Link>
-          </NextLink>
-        </Toolbar>
-      </AppBar>
-      <Container className={classes.main}>{children}</Container>
-      <footer className={classes.footer}>
-        <Typography>2021 - All rights reserved</Typography>
-      </footer>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AppBar className={classes.navbar} position="static">
+          <Toolbar>
+            <NextLink href="/" passHref>
+              <Link>
+                <Typography className={classes.brand}>Amazona</Typography>
+              </Link>
+            </NextLink>
+            <div className={classes.grow}></div>
+            <NextLink href="/cart" passHref>
+              <Link>
+                <Typography>Cart</Typography>
+              </Link>
+            </NextLink>
+            <NextLink href="/login" passHref>
+              <Link>
+                <Typography>Login</Typography>
+              </Link>
+            </NextLink>
+          </Toolbar>
+        </AppBar>
+        <Container className={classes.main}>{children}</Container>
+        <footer className={classes.footer}>
+          <Typography>2021 - All rights reserved</Typography>
+        </footer>
+      </ThemeProvider>
     </div>
   );
 }
